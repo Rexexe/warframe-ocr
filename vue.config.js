@@ -9,9 +9,21 @@ module.exports = defineConfig({
     plugins: [
       AutoImport({
         resolvers: [ElementPlusResolver()],
+        dts: "src/auto-import.d.ts",
+        include: [
+          /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+          /\.vue$/,
+          /\.vue\?vue/, // .vue
+          /\.md$/, // .md
+        ],
+        imports: ["vue", "vue-router"],
+        eslintrc: {
+          enabled: true,
+        },
       }),
       Components({
         resolvers: [ElementPlusResolver()],
+        dts: "src/components.d.ts",
       }),
     ],
   },
